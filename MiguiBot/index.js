@@ -145,7 +145,7 @@ async function starts() {
 				}
 				
 // Functions
-const getLevelingXp = (userId) => {
+const getLevelingXp = (userId) => (pushname) {
             let position = false
             Object.keys(_level).forEach((i) => {
                 if (_level[i].jid === userId) {
@@ -157,7 +157,7 @@ const getLevelingXp = (userId) => {
             }
         }
 
-        const getLevelingLevel = (userId) => {
+        const getLevelingLevel = (userId) => (pushname) {
             let position = false
             Object.keys(_level).forEach((i) => {
                 if (_level[i].jid === userId) {
@@ -169,7 +169,7 @@ const getLevelingXp = (userId) => {
             }
         }
 
-        const getLevelingId = (userId) => {
+        const getLevelingId = (userId) => (pushname) {
             let position = false
             Object.keys(_level).forEach((i) => {
                 if (_level[i].jid === userId) {
@@ -181,7 +181,7 @@ const getLevelingXp = (userId) => {
             }
         }
 
-        const addLevelingXp = (userId, amount) => {
+        const addLevelingXp = (userId, amount) => (pushname) {
             let position = false
             Object.keys(_level).forEach((i) => {
                 if (_level[i].jid === userId) {
@@ -194,7 +194,7 @@ const getLevelingXp = (userId) => {
             }
         }
 
-        const addLevelingLevel = (userId, amount) => {
+        const addLevelingLevel = (userId, amount) => (pushname) {
             let position = false
             Object.keys(_level).forEach((i) => {
                 if (_level[i].jid === userId) {
@@ -207,12 +207,12 @@ const getLevelingXp = (userId) => {
             }
         }
 
-        const addLevelingId = (userId) => {
+        const addLevelingId = (userId) => (pushname) {
             const obj = {jid: userId, xp: 1, level: 1}
             _level.push(obj)
             fs.writeFileSync('./database/json/level.json', JSON.stringify(_level))
         }
-        const getLimit = (sender) => {
+        const getLimit = (sender) => (pushname) {
                 let position = false
               Object.keys(limit).forEach ((i) => {
                 if (limit[position].id === sender) {
@@ -224,7 +224,7 @@ const getLevelingXp = (userId) => {
             }
         }
 
-        const getRegisteredRandomId = () => {
+        const getRegisteredRandomId = () => (pushname) {
             return _registered[Math.floor(Math.random() * _registered.length)].id
         }
 
