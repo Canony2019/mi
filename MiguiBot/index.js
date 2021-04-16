@@ -485,16 +485,18 @@ break
 							SouNoobYT.groupSettingChange(from, GroupSettingChange.messageSend, false)
 							SouNoobYT.sendMessage(from, open, text, { quoted: mek })
 							break
-				case 'play':   
+	                                case 'play':   
 					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=`)
+					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
 					if (anu.error) return reply(anu.error)
-					infomp3 = `*Achei rsrsrsr*\n\n*Divirta-se!!!*\nTitulo : *MIGUI NO TOPO*`
+					infomp3 = `*Divirta-se!*\n\link: ${anu.result.source}\n\n*MIGUI NO TOPO*`
+					buffer = await getBuffer(anu.result.thumbnail)
 					 lagu = await getBuffer(anu.result.url_audio)
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
 					SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
+					  break
 					case 'play2':   
 					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
