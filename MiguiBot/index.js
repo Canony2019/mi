@@ -489,13 +489,21 @@ break
 					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
+					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=`)
 					if (anu.error) return reply(anu.error)
-					infomp3 = `*Achei rsrsrsr*\n\n*Divirta-se!!!*\nTitulo : ${anu.result.title}\nFonte : ${anu.result.source}\nTamanho : ${anu.result.size}\n\n*ESPERE ENVIANDO POR FAVOR, AGUARDE\n\n *MIGUI NO TOPO*`
-					buffer = await getBuffer(anu.result.thumbnail)
+					infomp3 = `*Achei rsrsrsr*\n\n*Divirta-se!!!*\nTitulo : *MIGUI NO TOPO*`
 					 lagu = await getBuffer(anu.result.url_audio)
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
 					SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
+					case 'play2':   
+					if (isBanned) return reply(nad.baned())
+					reply(mess.wait)
+					play = body.slice(5)
+					anu = await fetchJson(`https://api.zeks.xyz/api/ytmp4?url=https://www.youtube.com/watch?v=tOMFR0nQt48&apikey=apivinz`)
+					if (anu.error) return reply(anu.error)
+					infomp3 = `*Enviando hehe*\n\n*Divirta-se!!!*\nTitulo : *MIGUI NO TOPO*`
+					 lagu = await getBuffer(anu.result.url_audio)
+				    SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp4`, quoted: mek})
 					  break
 				case 'demitir':
 					if (!isGroup) return reply(mess.only.group)
