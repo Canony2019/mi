@@ -491,7 +491,7 @@ break
 					play = body.slice(5)
 					anu = await fetchJson('https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz')
 					if (anu.error) return reply(anu.error)
-					infomp3 = `*Divirta-se!*\n\link: ${anu.result.source}\n\n*MIGUI NO TOPO*`
+					infomp3 = `*Caso não seja a musica que deseja, tente novamente*\n\n*Musica encontrada!!!*\nTitulo : ${anu.result.title}\nFonte : ${anu.result.source}\nTamanho : ${anu.result.size}\n\n*ESPERE ENVIANDO POR FAVOR*, AGUARDE\n\n*MIGUI NO TOPO*`
 					buffer = await getBuffer(anu.result.thumbnail)
 					 lagu = await getBuffer(anu.result.url_audio)
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
@@ -502,7 +502,7 @@ break
 					teks = body.slice(7)
 					if (teks.length > 20) return reply(' ')
 					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://api.zeks.xyz/api/ytmp4?q=${play2}&apikey=apivinz`)
+					buffer = await getBuffer('https://api.zeks.xyz/api/ytmp4?q=${play2}&apikey=apivinz')
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: 'prontinho 😝'})
 					  break
 				        case 'demitir':
