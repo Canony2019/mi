@@ -503,7 +503,7 @@ break
 					if (teks.length > 20) return reply(' ')
 					reply('*Estou fazendo, se der erro tente novamente ✓*')
 					buffer = await getBuffer('https://api.zeks.xyz/api/ytmp4?q=${play2}&apikey=apivinz')
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: 'prontinho 😝'})
+				        SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: 'prontinho 😝'})
 					  break
 				        case 'demitir':
 					if (!isGroup) return reply(mess.only.group)
