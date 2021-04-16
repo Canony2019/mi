@@ -590,7 +590,6 @@ break
 					} else {
 						console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
 					}
-                           }
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
 		}
