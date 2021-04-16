@@ -581,8 +581,7 @@ break
 					}
                                       break
 				default:
-					if (isGroup && isSimi && budy != undefined) {
-					if (isGroup && isSimi && budy != undefined) {
+		if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
 						muehe = await simih(budy)
 						console.log(muehe)
@@ -590,6 +589,7 @@ break
 					} else {
 						console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
 					}
+                           }
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
 		}
