@@ -497,17 +497,15 @@ break
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
 					SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
 					  break
-					case 'play2':   
-					if (isBanned) return reply(nad.baned())
-					reply(mess.wait)
-					play = body.slice(5)
-					anu = await fetchJson('https://api.zeks.xyz/api/ytmp4?q=${play2}&apikey=apivinz')
-					if (anu.error) return reply(anu.error)
-					infomp3 = `*pera...*\n\n*Divirta-se!!!*\nTitulo : *MIGUI NO TOPO*`
-					 lagu = await getBuffer(anu.result.url_audio)
-				    SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp4`, quoted: mek})
+					case 'play2':
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(7)
+					if (teks.length > 20) return reply(' ')
+					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					buffer = await getBuffer(`https://api.zeks.xyz/api/ytmp4?q=${play2}&apikey=apivinz`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: 'prontinho 😝'})
 					  break
-				case 'demitir':
+				        case 'demitir':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
