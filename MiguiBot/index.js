@@ -489,7 +489,7 @@ break
 					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
+					anu = await fetchJson('https://api.zeks.xyz/api/ytplaymp3?q=)
 					if (anu.error) return reply(anu.error)
 					infomp3 = `*Divirta-se!*\n\link: ${anu.result.source}\n\n*MIGUI NO TOPO*`
 					buffer = await getBuffer(anu.result.thumbnail)
@@ -501,9 +501,9 @@ break
 					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson(`https://api.zeks.xyz/api/ytmp4?url=https://www.youtube.com/watch?v=tOMFR0nQt48&apikey=apivinz`)
+					anu = await fetchJson('https://api.zeks.xyz/api/ytmp4?q=`)
 					if (anu.error) return reply(anu.error)
-					infomp3 = `*Enviando hehe*\n\n*Divirta-se!!!*\nTitulo : *MIGUI NO TOPO*`
+					infomp3 = `*pera...*\n\n*Divirta-se!!!*\nTitulo : *MIGUI NO TOPO*`
 					 lagu = await getBuffer(anu.result.url_audio)
 				    SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp4`, quoted: mek})
 					  break
