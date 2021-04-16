@@ -9,7 +9,7 @@ const {
 } = require('@adiwajshing/baileys')
 const { color, bgcolor } = require('./lib/color')
 const { help } = require('./src/help')
-const { getBuffer, simih, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
+const { getBuffer, h2k, simih generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
 const { fetchJson, fetchText } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
 const fs = require('fs')
@@ -23,18 +23,8 @@ const lolis = require('lolis.life')
 const loli = new lolis()
 const double = Math.floor(Math.random() * 2) + 1
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
+const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
 const setting = JSON.parse(fs.readFileSync('./src/settings.json'))
-const qrcode = require("qrcode-terminal")
-const axios = require('axios')
-// Load Json File
-const nsfw = JSON.parse(fs.readFileSync('./database/json/nsfw.json'))
-const samih = JSON.parse(fs.readFileSync('./database/json/simi.json'))
-const _leveling = JSON.parse(fs.readFileSync('./database/json/leveling.json'))
-const _level = JSON.parse(fs.readFileSync('./database/json/level.json'))
-const event = JSON.parse(fs.readFileSync('./database/json/event.json'))
-const _limit = JSON.parse(fs.readFileSync('./database/json/limit.json'))
-const uang = JSON.parse(fs.readFileSync('./database/json/uang.json'))
-const _registered = JSON.parse(fs.readFileSync('./database/json/registered.json'))
 prefix = setting.prefix
 blocked = []
 ban = []
@@ -143,111 +133,6 @@ async function starts() {
 					admin: '❌ Você não é adm! ❌',
 					Badmin: '❌ Preciso ser adm! ❌'
 				}
-				
-// Functions
-const getLevelingXp = (userId) => (pushname) {
-            let position = false
-            Object.keys(_level).forEach((i) => {
-                if (_level[i].jid === userId) {
-                    position = i
-                }
-            })
-            if (position !== false) {
-                return _level[position].xp
-            }
-        }
-
-        const getLevelingLevel = (userId) => (pushname) {
-            let position = false
-            Object.keys(_level).forEach((i) => {
-                if (_level[i].jid === userId) {
-                    position = i
-                }
-            })
-            if (position !== false) {
-                return _level[position].level
-            }
-        }
-
-        const getLevelingId = (userId) => (pushname) {
-            let position = false
-            Object.keys(_level).forEach((i) => {
-                if (_level[i].jid === userId) {
-                    position = i
-                }
-            })
-            if (position !== false) {
-                return _level[position].jid
-            }
-        }
-
-        const addLevelingXp = (userId, amount) => (pushname) {
-            let position = false
-            Object.keys(_level).forEach((i) => {
-                if (_level[i].jid === userId) {
-                    position = i
-                }
-            })
-            if (position !== false) {
-                _level[position].xp += amount
-                fs.writeFileSync('./database/json/level.json', JSON.stringify(_level))
-            }
-        }
-
-        const addLevelingLevel = (userId, amount) => (pushname) {
-            let position = false
-            Object.keys(_level).forEach((i) => {
-                if (_level[i].jid === userId) {
-                    position = i
-                }
-            })
-            if (position !== false) {
-                _level[position].level += amount
-                fs.writeFileSync('./database/json/level.json', JSON.stringify(_level))
-            }
-        }
-
-        const addLevelingId = (userId) => (pushname) {
-            const obj = {jid: userId, xp: 1, level: 1}
-            _level.push(obj)
-            fs.writeFileSync('./database/json/level.json', JSON.stringify(_level))
-        }
-        const getLimit = (sender) => (pushname) {
-                let position = false
-              Object.keys(limit).forEach ((i) => {
-                if (limit[position].id === sender) {
-                   position = i
-                  }
-              })
-             if (position !== false) {
-                return limit[position].limit
-            }
-        }
-
-        const getRegisteredRandomId = () => (pushname) {
-            return _registered[Math.floor(Math.random() * _registered.length)].id
-        }
-
-        const addRegisteredUser = (userid, sender, age, time, serials) => {
-            const obj = { id: userid, name: sender, age: age, time: time, serial: serials }
-            _registered.push(obj)
-            fs.writeFileSync('./database/json/registered.json', JSON.stringify(_registered))
-        }
-
-        const createSerial = (size) => {
-            return crypto.randomByt
-		es(size).toString('hex').slice(0, size)
-        }
-
-        const checkRegisteredUser = (sender) => {
-            let status = false
-            Object.keys(_registered).forEach((i) => {
-                if (_registered[i].id === sender) {
-                    status = true
-                }
-            })
-            return status
-        }
 			}
 
 			const botNumber = SouNoobYT.user.jid
@@ -265,31 +150,7 @@ const getLevelingXp = (userId) => (pushname) {
 			const isBanned = ban.includes(sender)
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
-			const isLevelingOn = isGroup ? _leveling.includes(groupId) : false
-		        const isRegister = checkRegisteredUser(sender)
 			pushname = SouNoobYT.contacts[sender] != undefined ? SouNoobYT.contacts[sender].vname || SouNoobYT.contacts[sender].notify : undefined
-                        
-                        			const isUrl = (url) => {
-			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
-			}
-			const reply = (teks) => {
-				client.sendMessage(from, teks, text, {quoted:mek})
-			}
-			const sendMess = (hehe, teks) => {
-				client.sendMessage(hehe, teks, text)
-			}
-			const mentions = (teks, memberr, id) => {
-				(id == null || id == undefined || id == false) ? client.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
-			}
-                        const sendImage = (teks) => {
-		                client.sendMessage(from, teks, image, {quoted:mek})
-		        }
-		        const costum = (pesan, tipe, target, target2) => {
-			        client.sendMessage(from, pesan, tipe, {quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` }}})
-			}
-		        const sendPtt = (teks) => {
-		                client.sendMessage(from, audio, mp3, {quoted:mek})
-                        
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 			}
@@ -301,36 +162,6 @@ const getLevelingXp = (userId) => (pushname) {
 			}
 			const mentions = (teks, memberr, id) => {
 				(id == null || id == undefined || id == false) ? SouNoobYT.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : SouNoobYT.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
-				
-				   //function leveling
-            if (isGroup && isLevelingOn) {
-            const currentLevel = getLevelingLevel(sender)
-            const checkId = getLevelingId(sender)
-            try {
-                if (currentLevel === undefined && checkId === undefined) addLevelingId(sender)
-                const amountXp = Math.floor(Math.random() * 10) + 500
-                const requiredXp = 5000 * (Math.pow(2, currentLevel) - 1)
-                const getLevel = getLevelingLevel(sender)
-                addLevelingXp(sender, amountXp)
-                if (requiredXp <= getLevelingXp(sender)) {
-                    addLevelingLevel(sender, 1)
-                    await reply(`*「 LEVEL UP 」*\n\n➸ *Name*: ${sender}\n➸ *XP*: ${getLevelingXp(sender)}\n➸ *Level*: ${getLevel} -> ${getLevelingLevel(sender)}\n\nCongrats!! 🎉🎉`)
-                }
-            } catch (err) {
-                console.error(err)
-            }
-		    
-		            //function balance
-            if (isRegister && isGroup ) {
-            const checkATM = checkATMuser(sender)
-            try {
-                if (checkATM === undefined) addATM(sender)
-                const uangsaku = Math.floor(Math.random() * 10) + 90
-                addKoinUser(sender, uangsaku)
-            } catch (err) {
-                console.error(err)
-            }
-
 			}
 			colors = ['red','white','black','blue','yellow','green']
 			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
@@ -392,11 +223,6 @@ const getLevelingXp = (userId) => (pushname) {
                     lima = fs.readFileSync('./assets/menuv.mp3');
                     SouNoobYT.sendMessage(from, lima, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
 					break
-					 if (!isRegister) return reply(mess.only.daftarB)
-                                        const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
-			                const uangku = checkATMuser(sender)
-                                        await costum(help(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
-                                        break
 				case 'lista':
 					case 'help':
 				    menuimg = fs.readFileSync('./assets/help.jpg')
@@ -755,6 +581,7 @@ break
 					}
                                       break
 				default:
+					if (isGroup && isSimi && budy != undefined) {
 					if (isGroup && isSimi && budy != undefined) {
 						console.log(budy)
 						muehe = await simih(budy)
