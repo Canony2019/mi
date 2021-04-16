@@ -489,7 +489,7 @@ break
 					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson('https://api.zeks.xyz/api/ytplaymp3?q=)
+					anu = await fetchJson('https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz')
 					if (anu.error) return reply(anu.error)
 					infomp3 = `*Divirta-se!*\n\link: ${anu.result.source}\n\n*MIGUI NO TOPO*`
 					buffer = await getBuffer(anu.result.thumbnail)
@@ -501,7 +501,7 @@ break
 					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson('https://api.zeks.xyz/api/ytmp4?q=`)
+					anu = await fetchJson('https://api.zeks.xyz/api/ytmp4?q=${play2}&apikey=apivinz')
 					if (anu.error) return reply(anu.error)
 					infomp3 = `*pera...*\n\n*Divirta-se!!!*\nTitulo : *MIGUI NO TOPO*`
 					 lagu = await getBuffer(anu.result.url_audio)
