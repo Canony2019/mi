@@ -265,7 +265,31 @@ const getLevelingXp = (userId) => {
 			const isBanned = ban.includes(sender)
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
+			const isLevelingOn = isGroup ? _leveling.includes(groupId) : false
+		        const isRegister = checkRegisteredUser(sender)
 			pushname = SouNoobYT.contacts[sender] != undefined ? SouNoobYT.contacts[sender].vname || SouNoobYT.contacts[sender].notify : undefined
+                        
+                        			const isUrl = (url) => {
+			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
+			}
+			const reply = (teks) => {
+				client.sendMessage(from, teks, text, {quoted:mek})
+			}
+			const sendMess = (hehe, teks) => {
+				client.sendMessage(hehe, teks, text)
+			}
+			const mentions = (teks, memberr, id) => {
+				(id == null || id == undefined || id == false) ? client.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
+			}
+                        const sendImage = (teks) => {
+		                client.sendMessage(from, teks, image, {quoted:mek})
+		        }
+		        const costum = (pesan, tipe, target, target2) => {
+			        client.sendMessage(from, pesan, tipe, {quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` }}})
+			}
+		        const sendPtt = (teks) => {
+		                client.sendMessage(from, audio, mp3, {quoted:mek})
+                        
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 			}
@@ -277,6 +301,36 @@ const getLevelingXp = (userId) => {
 			}
 			const mentions = (teks, memberr, id) => {
 				(id == null || id == undefined || id == false) ? SouNoobYT.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : SouNoobYT.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
+				
+				   //function leveling
+            if (isGroup && isLevelingOn) {
+            const currentLevel = getLevelingLevel(sender)
+            const checkId = getLevelingId(sender)
+            try {
+                if (currentLevel === undefined && checkId === undefined) addLevelingId(sender)
+                const amountXp = Math.floor(Math.random() * 10) + 500
+                const requiredXp = 5000 * (Math.pow(2, currentLevel) - 1)
+                const getLevel = getLevelingLevel(sender)
+                addLevelingXp(sender, amountXp)
+                if (requiredXp <= getLevelingXp(sender)) {
+                    addLevelingLevel(sender, 1)
+                    await reply(`*「 LEVEL UP 」*\n\n➸ *Name*: ${sender}\n➸ *XP*: ${getLevelingXp(sender)}\n➸ *Level*: ${getLevel} -> ${getLevelingLevel(sender)}\n\nCongrats!! 🎉🎉`)
+                }
+            } catch (err) {
+                console.error(err)
+            }
+		    
+		            //function balance
+            if (isRegister && isGroup ) {
+            const checkATM = checkATMuser(sender)
+            try {
+                if (checkATM === undefined) addATM(sender)
+                const uangsaku = Math.floor(Math.random() * 10) + 90
+                addKoinUser(sender, uangsaku)
+            } catch (err) {
+                console.error(err)
+            }
+
 			}
 			colors = ['red','white','black','blue','yellow','green']
 			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
@@ -338,6 +392,11 @@ const getLevelingXp = (userId) => {
                     lima = fs.readFileSync('./assets/menuv.mp3');
                     SouNoobYT.sendMessage(from, lima, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
 					break
+					 if (!isRegister) return reply(mess.only.daftarB)
+                                        const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
+			                const uangku = checkATMuser(sender)
+                                        await costum(help(pushname, prefix, botName, ownerName, reqXp, uangku), text, tescuk, cr)
+                                        break
 				case 'lista':
 					case 'help':
 				    menuimg = fs.readFileSync('./assets/help.jpg')
@@ -702,7 +761,7 @@ break
 						console.log(muehe)
 						reply(muehe)
 					} else {
-						return //console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
+						console.log(color('[WARN]','red'), 'Unregistered Command from', color(sender.split('@')[0]))
 					}
                            }
 		} catch (e) {
