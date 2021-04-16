@@ -5,6 +5,14 @@ const {
     MessageType,
     Presence,
     Mimetype,
+    MessageOptions,
+    WALocationMessage,
+    WA_MESSAGE_STUB_TYPES,
+    ReconnectMode,
+    ProxyAgent,
+    waChatKey,
+    mentionedJid,
+    processTime,
     GroupSettingChange
 } = require('@adiwajshing/baileys')
 const { color, bgcolor } = require('./lib/color')
