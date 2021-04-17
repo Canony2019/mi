@@ -491,12 +491,23 @@ break
 					play = body.slice(5)
 					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
 					if (anu.error) return reply(anu.error)
-					infomp3 = `*Procurando...*\n\n* *\n ${anu.result.title}\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando! aguarde_ ⇩\n\n*MIGUI NO TOPO*`
+					infomp3 = `*Procurando...*\n\n*achando*\n ${anu.result.title}\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando! aguarde_ ⇩\n\n*MIGUI NO TOPO*`
 					buffer = await getBuffer(anu.result.thumbnail)
 					 lagu = await getBuffer(anu.result.url_audio)
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
 					SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
-					break  
+					break
+                                        case 'yt':
+					if (args.length < 1) return reply('Preciso do link!')
+					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
+					anu = await fetchJson(`https://st4rz.herokuapp.com/api/ytv2?url=${args[0]}`, {method: 'get'})
+					if (anu.error) return reply(anu.error)
+					teks = `*Migui está baixando seu Vídeo* 📸`
+					thumb = await getBuffer(anu.thumb)
+					SouNoobYT.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
+					buffer = await getBuffer(anu.result)
+					SouNoobYT.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}`, quoted: mek})
+					break
 				        case 'demitir':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
