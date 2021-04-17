@@ -9,6 +9,7 @@ const help = (prefix) => {
   ✿ *MÚSICA*
   │
   └─ ⊹ ${prefix}play (nome da música)
+  └─ ⊹ ${prefix}yt (link da música)
   │
   ✿ *STICKER*
   │
