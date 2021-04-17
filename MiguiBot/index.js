@@ -131,7 +131,7 @@ async function starts() {
 				wait: '⌛ Calma aeee ⌛',
 				success: '✔️ Sucesso ✔️',
 				error: {
-					stick: '❌ Ocorreu um erro ao converter a imagem em sticker ❌',
+					stick: 'Vixi, deu erro tenta de novo',
 					Iv: '❌ Link inválido ❌'
 				},
 				only: {
@@ -491,7 +491,7 @@ break
 					play = body.slice(5)
 					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
 					if (anu.error) return reply(anu.error)
-					infomp3 = `*Caso não seja a musica que deseja, tente novamente*\n\n*Musica encontrada!!!*\nTitulo : ${anu.result.title}\nFonte : ${anu.result.source}\nTamanho : ${anu.result.size}\n\n*ESPERE ENVIANDO POR FAVOR*, AGUARDE\n\n*MIGUI NO TOPO*`
+					infomp3 = `*Procurando...*\n\n* *\n ${anu.result.title}\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando! aguarde_ ⇩\n\n*MIGUI NO TOPO*`
 					buffer = await getBuffer(anu.result.thumbnail)
 					 lagu = await getBuffer(anu.result.url_audio)
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
