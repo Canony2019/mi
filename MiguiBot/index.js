@@ -497,18 +497,13 @@ break
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
 					SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
 					  break
-		                	case 'play2':   
-					if (isBanned) return reply(nad.baned())
-					reply(mess.wait)
-					play2 = body.slice(5)
-					anu = await fetchJson(`https://api.zeks.xyz/api/ytmp4?q=${play2}&apikey=apivinz`)
-					if (anu.error) return reply(anu.error)
-					infomp4 = `*Achei!!!*\n\nprontinho 😝\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando... aguarde_ ⇩\n\n *MIGUI NO TOPO*`
-					buffer = await getBuffer(anu.result.thumbnail)
-					 lagu = await getBuffer(anu.result.url_audio)
-				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp4})
-					SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp4`, quoted: mek})
-					  break
+		                	                  case 'dono1':                     
+					data = await fetchJson(`https://api.zeks.xyz/api/ytmp4?q=${play2}&apikey=apivinz`, {method: 'get'})
+                     anuk = await getBuffer(data.img)
+                     dark = `*Achei!!!*\n\nprontinho 😝\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando... aguarde_ ⇩\n\n *MIGUI NO TOPO*`                     
+					SouNoobYT.sendMessage(from, anuk, image, {quoted: mek, caption: dark})
+                    await limitAdd(sender)
+                    break      
 				        case 'demitir':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
