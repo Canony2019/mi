@@ -486,13 +486,13 @@ break
 							SouNoobYT.sendMessage(from, open, text, { quoted: mek })
 							break
 	                                case 'play':   
-					if (isBanned) return reply(nad.baned())
+					if (args.length < 1) return reply('Nome da música')
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
+					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${args[0]}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					infomp3 = `*Achei!*\n\nufa 😌\n ${anu.result.title}\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando! aguarde_ ⇩\n\n*MIGUI NO TOPO*`
-					buffer = await getBuffer(anu.result.thumbnail)
+					thumb = await getBuffer(anu.thumb)
 					 lagu = await getBuffer(anu.result.url_audio)
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
 					SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
