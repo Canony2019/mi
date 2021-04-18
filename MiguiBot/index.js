@@ -489,9 +489,9 @@ break
 					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
+					anu = await fetchJson(`https://st4rz.herokuapp.com/api/yta?url=${play}&apikey=apivinz`)
 					if (anu.error) return reply(anu.error)
-					infomp3 = `*Procurando...*\n\n*achando*\n ${anu.result.title}\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando! aguarde_ ⇩\n\n*MIGUI NO TOPO*`
+					infomp3 = `*Achei!*\n\nufa 😌\n ${anu.result.title}\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando! aguarde_ ⇩\n\n*MIGUI NO TOPO*`
 					buffer = await getBuffer(anu.result.thumbnail)
 					 lagu = await getBuffer(anu.result.url_audio)
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
