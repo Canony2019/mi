@@ -390,8 +390,8 @@ async function starts() {
 					}
 					SouNoobYT.sendMessage(from, teks, text, {detectLinks: false, quoted: mek})
 					break
-				case 'clearall':
-					if (!isOwner) return reply('Você não é o meu dono')
+				case 'teto':
+					if (!isOwner) return reply('✋🏻😟🤚🏻')
 					anu = await SouNoobYT.chats.all()
 					SouNoobYT.setMaxListeners(25)
 					for (let _ of anu) {
