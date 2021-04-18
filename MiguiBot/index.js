@@ -460,6 +460,13 @@ break
 					const kl = ti[Math.floor(Math.random() * ti.length)]
 					SouNoobYT.sendMessage(from, 'O quão você é: *'+rate+'*\n\nSua porcentagem😎👉 : '+ kl+'%', text, {pushname})
 					break
+                                case 'feio':		
+	            	if (args.length < 1) return reply('marque seus amigos!')
+					rate = body.slice(1)
+					const ti =['4','9','17','28','34','48','59','62','74','83','97','100','29','94','75','82','41','39']
+					const kl = ti[Math.floor(Math.random() * ti.length)]
+					SouNoobYT.sendMessage(from, 'O quão você é: *'+rate+'*\n\nSua porcentagem🤢👉 : '+ kl+'%', text, {pushname})
+					break
 						case 'fechar':
 							SouNoobYT.updatePresence(from, Presence.composing)
 							if (!isGroup) return reply(mess.only.group)
@@ -489,7 +496,7 @@ break
 					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson(`https://st4rz.herokuapp.com/api/yta?url=${play}&apikey=apivinz`)
+					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
 					if (anu.error) return reply(anu.error)
 					infomp3 = `*Achei!*\n\nufa 😌\n ${anu.result.title}\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando! aguarde_ ⇩\n\n*MIGUI NO TOPO*`
 					buffer = await getBuffer(anu.result.thumbnail)
