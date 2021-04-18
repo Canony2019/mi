@@ -453,7 +453,8 @@ break
 											}
 											await SouNoobYT.sendMessage(from, options, text)
 											break
-				case 'lindo':		
+				case 'lindo':	
+			        case 'feio':
 	            	if (args.length < 1) return reply('marque seus amigos!')
 					rate = body.slice(1)
 					const ti =['4','9','17','28','34','48','59','62','74','83','97','100','29','94','75','82','41','39']
@@ -492,7 +493,7 @@ break
 					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${args[0]}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					infomp3 = `*Achei!*\n\nufa 😌\n ${anu.result.title}\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando! aguarde_ ⇩\n\n*MIGUI NO TOPO*`
-					thumb = await getBuffer(anu.thumb)
+					buffer = await getBuffer(anu.result.thumbnail)
 					 lagu = await getBuffer(anu.result.url_audio)
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
 					SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
