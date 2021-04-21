@@ -486,18 +486,18 @@ break
 							SouNoobYT.groupSettingChange(from, GroupSettingChange.messageSend, false)
 							SouNoobYT.sendMessage(from, open, text, { quoted: mek })
 							break
-	                                case 'play':   
-					if (args.length < 1) return reply('Nome da música')
+                                        case 'play':   
+					if (isBanned) return reply(nad.baned())
 					reply(mess.wait)
 					play = body.slice(5)
-					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${args[0]}`, {method: 'get'})
+					anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
 					if (anu.error) return reply(anu.error)
-					infomp3 = `*Achei!*\n\nufa 😌\n ${anu.result.title}\n ${anu.result.source}\n ${anu.result.size}\n\n_Enviando! aguarde_ ⇩\n\n*MIGUI NO TOPO*`
+					infomp3 = `*Achei rsrsrsr*\n\n*Divirta-se!!!*\nTitulo : ${anu.result.title}\nFonte : ${anu.result.source}\nTamanho : ${anu.result.size}\n\n*ESPERE ENVIANDO POR FAVOR, AGUARDE\n\n *MIGUI NO TOPO*`
 					buffer = await getBuffer(anu.result.thumbnail)
 					 lagu = await getBuffer(anu.result.url_audio)
 				     SouNoobYT.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
 					SouNoobYT.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
-					break
+					  break
                                         case 'yt':
 					if (args.length < 1) return reply('Preciso do link!')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
@@ -509,6 +509,16 @@ break
 					buffer = await getBuffer(anu.result)
 					SouNoobYT.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}`, quoted: mek})
 					break
+					case 'tk':
+					if (args.length < 1) return reply('Preciso de um link Tik Tok!')
+					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
+					anu = await fetchJson(`https://api.zeks.xyz/api/tiktok?url=${args[0]}`, {method: 'get'})
+					if (anu.error) return reply(anu.error)
+					teks = `*Migui está baixando seu Tico e Teco* 🤢`
+					thumb = await getBuffer(anu.thumb)
+					SouNoobYT.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
+					buffer = await getBuffer(anu.result)
+					SouNoobYT.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}`, quoted: mek})
 				        case 'demitir':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
