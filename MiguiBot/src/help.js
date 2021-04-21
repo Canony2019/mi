@@ -10,6 +10,7 @@ const help = (prefix) => {
   │
   └─ ⊹ ${prefix}play (nome da música)
   └─ ⊹ ${prefix}yt (link da música)
+  └─ ⊹ ${prefix}tk (link do Tik e Tok)
   │
   ✿ *STICKER*
   │
@@ -20,7 +21,7 @@ const help = (prefix) => {
   │
   ✿ *JOGOS*
   │
-  └─ ⊹ ${prefix}lindo 
+  └─ ⊹ ${prefix}lindo ou Feio
   │
   ✿ *ADMS*
   │
@@ -35,7 +36,7 @@ const help = (prefix) => {
   ├─ ⊹ ${prefix}promover
   ├─ ⊹ ${prefix}membros
   └─ ⊹ ${prefix}notif
-  ♦ https://www.youtube.com/c/SouNoobYT
+     ♦ https://www.youtube.com/c/SouNoobYT
 
 「 ${pushname} qualquer bug:
   » SAC: wa.me/+5521975077939 」`
